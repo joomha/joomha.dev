@@ -4,7 +4,7 @@ Selamat datang di repositori portofolio **Ahmad Jumhadi (@joomha)**. Website ini
 
 ---
 
-## 🚀 Cara Menambah Artikel Baru
+## Cara Menambah Artikel Baru
 
 Semua konten blog/artikel berada di folder `src/content/blog/`. 
 
@@ -24,7 +24,7 @@ Konten artikel Anda di sini...
 
 ---
 
-## 🖼️ Penempatan Gambar
+## Penempatan Gambar
 
 Untuk gambar di dalam artikel, Anda punya dua pilihan:
 1. **Lokal**: Masukkan gambar ke folder `public/assets/` dan panggil di MDX:
@@ -33,7 +33,7 @@ Untuk gambar di dalam artikel, Anda punya dua pilihan:
 
 ---
 
-## 🎨 Mengubah Warna & Tema
+## Mengubah Warna & Tema
 
 Warna utama diatur di file `src/styles/global.css`.
 - Cari bagian `:root` untuk **Light Mode**.
@@ -42,7 +42,7 @@ Warna utama diatur di file `src/styles/global.css`.
 
 ---
 
-## 🏠 Mengedit Halaman Awal (Landing Page)
+## Mengedit Halaman Awal (Landing Page)
 
 Konten halaman utama (Headline, Hero section, dan susunan Bento Grid) dapat Anda edit langsung di file:
 `src/pages/index.astro`
@@ -51,7 +51,7 @@ Di sana Anda bisa mengubah teks "I'm Jomha", deskripsi diri, serta tautan-tautan
 
 ---
 
-## 🛠️ Portfolio / Proyek
+## Portfolio / Proyek
 
 Saat ini, portofolio diarahkan untuk menggunakan format blog post atau bisa ditambahkan section khusus di `src/pages/index.astro`. 
 
@@ -59,7 +59,7 @@ Saat ini, portofolio diarahkan untuk menggunakan format blog post atau bisa dita
 
 ---
 
-## 💻 Menjalankan Secara Lokal
+## menjalankan Secara Lokal
 
 Jika Anda ingin mengedit dan melihat hasilnya langsung:
 1. Buka terminal di folder ini.
@@ -68,5 +68,3 @@ Jika Anda ingin mengedit dan melihat hasilnya langsung:
 4. Buka `http://localhost:4321`.
 
 ---
-
-*Dibuat dengan ❤️ untuk Ahmad Jumhadi.*
