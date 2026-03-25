@@ -4,7 +4,7 @@ Selamat datang di repositori portofolio **Ahmad Jumhadi (@joomha)**. Website ini
 
 ---
 
-## 🚀 Cara Menambah Artikel Baru
+## Cara Menambah Artikel Baru
 
 Semua konten blog/artikel berada di folder `src/content/blog/`. 
 
@@ -12,28 +12,28 @@ Semua konten blog/artikel berada di folder `src/content/blog/`.
 2. **Atur Frontmatter**: Pastikan di bagian atas file terdapat metadata seperti ini:
 ```markdown
 ---
-title: "Judul Artikel Anda"
+title: "Judul Artikel kamu"
 pubDatetime: 2026-03-25T23:00:00+07:00
 description: "Deskripsi singkat artikel."
 tags:
   - webdev
   - ai
 ---
-Konten artikel Anda di sini...
+Konten artikel kamu di sini...
 ```
 
 ---
 
-## 🖼️ Penempatan Gambar
+## Penempatan Gambar
 
-Untuk gambar di dalam artikel, Anda punya dua pilihan:
+Untuk gambar di dalam artikel, kamu punya dua pilihan:
 1. **Lokal**: Masukkan gambar ke folder `public/assets/` dan panggil di MDX:
    `![Deskripsi](/assets/nama-gambar.jpg)`
 2. **External**: Gunakan URL langsung dari layanan hosting gambar.
 
 ---
 
-## 🎨 Mengubah Warna & Tema
+## Mengubah Warna & Tema
 
 Warna utama diatur di file `src/styles/global.css`.
 - Cari bagian `:root` untuk **Light Mode**.
@@ -42,31 +42,29 @@ Warna utama diatur di file `src/styles/global.css`.
 
 ---
 
-## 🏠 Mengedit Halaman Awal (Landing Page)
+## Mengedit Halaman Awal (Landing Page)
 
-Konten halaman utama (Headline, Hero section, dan susunan Bento Grid) dapat Anda edit langsung di file:
+Konten halaman utama (Headline, Hero section, dan susunan Bento Grid) dapat kamu edit langsung di file:
 `src/pages/index.astro`
 
-Di sana Anda bisa mengubah teks "I'm Jomha", deskripsi diri, serta tautan-tautan di dalam kotak bento.
+Di sana kamu bisa mengubah teks "I'm Jomha", deskripsi diri, serta tautan-tautan di dalam kotak bento.
 
 ---
 
-## 🛠️ Portfolio / Proyek
+## Portfolio / Proyek
 
 Saat ini, portofolio diarahkan untuk menggunakan format blog post atau bisa ditambahkan section khusus di `src/pages/index.astro`. 
 
-**Saran saya:** Masukkan portofolio sebagai artikel blog dengan tag `portfolio`. Dengan begitu, proyek Anda akan muncul otomatis di daftar tulisan terbaru.
+**Saran saya:** Masukkan portofolio sebagai artikel blog dengan tag `portfolio`. Dengan begitu, proyek kamu akan muncul otomatis di daftar tulisan terbaru.
 
 ---
 
-## 💻 Menjalankan Secara Lokal
+## menjalankan Secara Lokal
 
-Jika Anda ingin mengedit dan melihat hasilnya langsung:
+Jika kamu ingin mengedit dan melihat hasilnya langsung:
 1. Buka terminal di folder ini.
 2. Jalankan `npm install` (hanya sekali).
 3. Jalankan `npm run dev`.
 4. Buka `http://localhost:4321`.
 
 ---
-
-*Dibuat dengan ❤️ untuk Ahmad Jumhadi.*
