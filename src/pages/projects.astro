@@ -1,0 +1,49 @@
+---
+import { getCollection } from "astro:content";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Layout from "@/layouts/Layout.astro";
+import Main from "@/components/Main.astro";
+import Tag from "@/components/Tag.astro";
+import getUniqueTags from "@/utils/getUniqueTags";
+import { SITE } from "@/config";
+
+const posts = await getCollection("blog");
+const portfolioPosts = posts.filter(post => post.data.tags.includes("portfolio"));
+---
+
+<Layout title={`Projects | ${SITE.title}`}>
+  <Header activeNav="projects" />
+  <main id="main-content" class="mx-auto max-w-5xl px-6 pt-16 pb-12">
+    <section id="projects" class="prose max-w-none">
+      <h1 class="text-3xl font-bold mb-4">Projects</h1>
+      <p class="text-lg opacity-70 mb-8">A collection of my works in Web, AI, and SEO.</p>
+      
+      {portfolioPosts.length === 0 ? (
+        <div class="bg-muted/20 border border-border rounded-2xl p-8 text-center my-12">
+          <p class="text-lg opacity-60">Working on something exciting. Check back soon!</p>
+          <p class="text-sm opacity-40 mt-2">To add a project, simply create a blog post with the tag <code class="bg-muted px-1 rounded">portfolio</code>.</p>
+        </div>
+      ) : (
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-6 not-prose list-none p-0">
+          {portfolioPosts.map(post => (
+            <li class="border border-border rounded-2xl p-6 hover:border-accent/50 transition-all group">
+              <a href={`/posts/${post.slug}`} class="block">
+                <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{post.data.title}</h3>
+                <p class="text-sm opacity-70 mb-4 line-clamp-2">{post.data.description}</p>
+                <div class="flex flex-wrap gap-2">
+                  {post.data.tags.map(tag => (
+                    <span class="text-[10px] uppercase tracking-widest px-2 py-0.5 bg-accent/10 text-accent rounded-full font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
+  </main>
+  <Footer />
+</Layout>
