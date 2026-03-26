@@ -16,10 +16,7 @@ const recentPosts = sortedPosts.slice(0, SITE.postPerIndex);
 // Stats — auto-calculated
 const totalPosts = posts.length;
 const totalProjects = posts.filter(p => p.data.tags.includes("portfolio")).length;
-const totalWords = posts.reduce((sum, post) => {
-  const words = post.body ? post.body.split(/\s+/).filter(Boolean).length : 0;
-  return sum + words;
-}, 0);
+const totalVolunteer = posts.filter(p => p.data.tags.includes("volunteer")).length;
 ---
 
 <Layout>
@@ -57,8 +54,8 @@ const totalWords = posts.reduce((sum, post) => {
               <span class="text-xs opacity-50 uppercase tracking-wider">Projects</span>
             </a>
             <div class="text-center">
-              <span class="block text-xl font-bold">{totalWords.toLocaleString()}</span>
-              <span class="text-xs opacity-50 uppercase tracking-wider">Words</span>
+              <span class="block text-xl font-bold">{totalVolunteer}</span>
+              <span class="text-xs opacity-50 uppercase tracking-wider">Volunteer</span>
             </div>
           </div>
 
