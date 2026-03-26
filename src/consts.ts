@@ -31,11 +31,11 @@ interface Site {
 
 // Site configuration
 export const SITE: Site = {
-  website: "https://jomha.dev/",
+  website: "https://joomha.dev/",
   author: "Ahmad Jumhadi",
-  profile: "https://jomha.dev/",
+  profile: "https://joomha.dev/",
   desc: "Personal space of Ahmad Jumhadi (@joomha). Developer interested in Next.js, Data Science, AI, and SEO.",
-  title: "Jomha",
+  title: "Joomha",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
@@ -45,7 +45,7 @@ export const SITE: Site = {
   showBackButton: true,
   editPost: {
     enabled: true,
-    url: "https://github.com/joomha/jomha.dev/edit/main/src/content/blog",
+    url: "https://github.com/joomha/joomha.dev/edit/main/src/content/blog",
     text: "Edit on GitHub",
   },
   dynamicOgImage: true,
