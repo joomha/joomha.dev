@@ -178,7 +178,7 @@ const wordCount = (post.body ?? "").split(/\s+/).length;
     </div>
 
     <!-- Comment Section -->
-    <CommentSection client:load postSlug={post.id} />
+    <CommentSection client:only="react" postSlug={post.id} />
 
     <hr class="my-6 border-dashed" />
 
