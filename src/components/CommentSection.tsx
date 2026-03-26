@@ -24,7 +24,7 @@ interface Props {
   postSlug: string;
 }
 
-const ADMIN_KEY = "jomha_admin_2026";
+const ADMIN_KEY = "joomhadi";
 
 function timeAgo(date: Date): string {
   const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
