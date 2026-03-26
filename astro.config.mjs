@@ -99,10 +99,10 @@ export default defineConfig({
     react(),
     AstroPWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "peter-avatar.jpg"],
+      includeAssets: ["favicon.ico", "avatar.png"],
       manifest: {
-        name: "Jomha",
-        short_name: "jomha",
+        name: "Joomha",
+        short_name: "joomha",
         description: "Crafting simple, readable, and professional web experiences.",
         theme_color: "#0d9488",
         background_color: "#f8faf9",
@@ -117,15 +117,15 @@ export default defineConfig({
             type: "image/x-icon",
           },
           {
-            src: "peter-avatar.jpg",
+            src: "avatar.png",
             sizes: "192x192",
-            type: "image/jpeg",
+            type: "image/png",
             purpose: "any",
           },
           {
-            src: "peter-avatar.jpg",
+            src: "avatar.png",
             sizes: "512x512",
-            type: "image/jpeg",
+            type: "image/png",
             purpose: "any maskable",
           },
         ],

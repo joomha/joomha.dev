@@ -1,9 +1,9 @@
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async () => {
-  const markdownContent = `# Peter Steinberger (@steipete)
+  const markdownContent = `# Ahmad Jumhadi (@joomha)
 
-AI-powered tools from Swift roots to web frontiers. Every commit lands on GitHub for you to fork & remix.
+Personal space of Ahmad Jumhadi. Developer interested in Data Science, AI, and SEO.
 
 ## Navigation
 
@@ -14,13 +14,14 @@ AI-powered tools from Swift roots to web frontiers. Every commit lands on GitHub
 
 ## Links
 
-- Twitter: [@steipete](https://twitter.com/steipete)
-- GitHub: [@steipete](https://github.com/steipete)
-- Email: steipete@gmail.com
+- X/Twitter: [@joomha](https://x.com/joomha)
+- GitHub: [@joomha](https://github.com/joomha)
+- LinkedIn: [joomha](https://www.linkedin.com/in/joomha)
+- Email: hi@joomha.dev
 
 ---
 
-*This is the markdown-only version of steipete.me. Visit [steipete.me](https://steipete.me) for the full experience.*`;
+*This is the markdown-only version of joomha.dev. Visit [joomha.dev](https://joomha.dev) for the full experience.*`;
 
   return new Response(markdownContent, {
     status: 200,

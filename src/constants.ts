@@ -27,7 +27,7 @@ export const SOCIALS = [
   },
   {
     name: "Mail",
-    href: "mailto:hi@jomha.dev",
+    href: "mailto:hi@joomha.dev",
     linkTitle: `Send an email to ${SITE.author}`,
     active: true,
   },

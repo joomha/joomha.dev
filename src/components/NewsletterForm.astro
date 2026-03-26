@@ -6,20 +6,23 @@ export interface Props {
 const { variant = "default" } = Astro.props;
 ---
 
+<!-- Newsletter form disabled - no Buttondown account configured -->
+<!-- To enable: create a Buttondown account and update the action URL below -->
+<!--
 <div class={variant === 'default' ? 'newsletter-box bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 rounded-lg p-6 my-8' : 'newsletter-compact mt-6'}>
   {variant === 'default' && (
     <p class="text-sm text-gray-600 dark:text-gray-400 mb-4">
-      New posts, shipping stories, and nerdy links straight to your inbox.
+      New posts straight to your inbox.
     </p>
   )}
   
   <form
-    action="https://buttondown.com/api/emails/embed-subscribe/steipete"
+    action="https://buttondown.com/api/emails/embed-subscribe/YOUR_USERNAME"
     method="post"
     target="_blank"
     class="flex flex-col sm:flex-row gap-3"
   >
-    <input type="hidden" name="tag" value="steipete" />
+    <input type="hidden" name="tag" value="joomha" />
     <input
       type="text"
       name="name"
@@ -48,6 +51,7 @@ const { variant = "default" } = Astro.props;
     </p>
   )}
 </div>
+-->
 
 <style>
   @media (max-width: 640px) {
