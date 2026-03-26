@@ -1,9 +1,14 @@
 ---
 import IconArchive from "@/assets/icons/IconArchive.svg";
+import IconGitHub from "@/assets/icons/IconGitHub.svg";
+import IconInstagram from "@/assets/icons/IconInstagram.svg";
+import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
+import IconMail from "@/assets/icons/IconMail.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
 import IconMoon from "@/assets/icons/IconMoon.svg";
 import IconSearch from "@/assets/icons/IconSearch.svg";
 import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
+import IconTiktok from "@/assets/icons/IconTiktok.svg";
 import IconX from "@/assets/icons/IconX.svg";
 import { SITE } from "@/config";
 import Hr from "./Hr.astro";
@@ -137,6 +142,23 @@ const isActive = (path: string) => {
     </div>
   </div>
   <Hr />
+  <div class="mx-auto flex max-w-5xl items-center justify-center gap-3 px-4 py-2">
+    <a href="mailto:hi@joomha.dev" class="group inline-flex items-center gap-1 rounded-full p-1.5 opacity-60 transition-all hover:opacity-100 hover:text-accent" title="Email" aria-label="Send email">
+      <IconMail class="size-[18px]" />
+    </a>
+    <a href="https://github.com/joomha" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 rounded-full p-1.5 opacity-60 transition-all hover:opacity-100 hover:text-accent" title="GitHub" aria-label="GitHub">
+      <IconGitHub class="size-[18px]" />
+    </a>
+    <a href="https://www.linkedin.com/in/joomha" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 rounded-full p-1.5 opacity-60 transition-all hover:opacity-100 hover:text-accent" title="LinkedIn" aria-label="LinkedIn">
+      <IconLinkedin class="size-[18px]" />
+    </a>
+    <a href="https://instagram.com/joomha" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 rounded-full p-1.5 opacity-60 transition-all hover:opacity-100 hover:text-accent" title="Instagram" aria-label="Instagram">
+      <IconInstagram class="size-[18px]" />
+    </a>
+    <a href="https://tiktok.com/@joomha" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-1 rounded-full p-1.5 opacity-60 transition-all hover:opacity-100 hover:text-accent" title="TikTok" aria-label="TikTok">
+      <IconTiktok class="size-[18px]" />
+    </a>
+  </div>
 </header>
 
 <script>
