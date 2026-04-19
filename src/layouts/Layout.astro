@@ -16,6 +16,7 @@ export interface Props {
   pubDatetime?: Date;
   modDatetime?: Date | null;
   scrollSmooth?: boolean;
+  hreflangTags?: Array<{ hreflang: string; href: string }>;
 }
 
 const {
@@ -28,6 +29,7 @@ const {
   pubDatetime,
   modDatetime,
   scrollSmooth = false,
+  hreflangTags = [],
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.url);
@@ -58,6 +60,11 @@ const structuredData = {
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
+
+    {/* hreflang alternates for multi-language articles */}
+    {hreflangTags.map(({ hreflang, href }) => (
+      <link rel="alternate" hreflang={hreflang} href={href} />
+    ))}
 
     <!-- General Meta Tags -->
     <title>{title}</title>

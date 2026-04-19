@@ -2,6 +2,7 @@
 import { type CollectionEntry, getCollection, render } from "astro:content";
 import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
 import { calculateReadingTime } from "../../utils/readingTime";
+import { findTranslation } from "../../utils/getTranslationFilter";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -22,7 +23,7 @@ export async function getStaticPaths() {
       if (yearDirMatch) {
         return {
           params: { slug: postSlug },
-          props: { post, yearSlug: postSlug },
+          props: { post, yearSlug: postSlug, allPosts: posts },
         };
       }
 
@@ -43,7 +44,7 @@ export async function getStaticPaths() {
 
       return {
         params: { slug: yearSlug },
-        props: { post, yearSlug },
+        props: { post, yearSlug, allPosts: posts },
       };
     })
     .filter(Boolean); // Filter out null values
@@ -52,13 +53,39 @@ export async function getStaticPaths() {
 type Props = {
   post: CollectionEntry<"blog">;
   yearSlug: string;
+  allPosts: CollectionEntry<"blog">[];
 };
 
-const { post, yearSlug } = Astro.props;
+const { post, yearSlug, allPosts } = Astro.props;
 const { Content } = await render(post);
 const readingTime = calculateReadingTime(post.body ?? "");
+
+// Find translation counterpart (if any) for the Switch Language button
+const translationPost = findTranslation(post, allPosts);
+
+// Build the translation URL from its post.id
+let translationSlugUrl: string | undefined;
+if (translationPost) {
+  const tSlug = translationPost.id;
+  const yearDirMatch = tSlug.match(/^(\d{4})\/(.*)/);
+  if (yearDirMatch) {
+    translationSlugUrl = tSlug;
+  } else {
+    const pubDate = translationPost.data.pubDatetime;
+    const year = pubDate
+      ? pubDate.getFullYear().toString()
+      : new Date().getFullYear().toString();
+    translationSlugUrl = `${year}/${tSlug.replace(/^\d{4}-\d{2}-\d{2}-/, "")}`;
+  }
+}
 ---
 
-<BlogPostLayout {...post.data} slug={yearSlug} readingTime={readingTime}>
+<BlogPostLayout
+  {...post.data}
+  slug={yearSlug}
+  readingTime={readingTime}
+  translationSlug={translationSlugUrl}
+  translationLang={translationPost?.data.lang}
+>
   <Content />
 </BlogPostLayout>

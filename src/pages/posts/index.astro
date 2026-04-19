@@ -6,8 +6,10 @@ import Header from "@/components/Header.astro";
 import { SITE } from "@/consts";
 import Layout from "@/layouts/Layout.astro";
 import getPostsByGroupCondition from "@/utils/getPostsByGroupCondition";
+import { filterListingPosts } from "@/utils/getTranslationFilter";
 
-const posts = await getCollection("blog", ({ data }) => !data.draft);
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const posts = filterListingPosts(allPosts);
 
 const months = [
   "January",

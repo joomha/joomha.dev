@@ -25,6 +25,9 @@ const blog = defineCollection({
       // Additional fields from existing posts
       source: z.string().optional(),
       AIDescription: z.boolean().optional(),
+      // Multi-language support
+      lang: z.enum(["id", "en"]).default("id"),
+      translationGroupId: z.string().optional(),
     }),
 });
 

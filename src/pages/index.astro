@@ -7,16 +7,18 @@ import StructuredData from "@/components/StructuredData.astro";
 import { SITE } from "@/config";
 import Layout from "@/layouts/Layout.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
+import { filterListingPosts } from "@/utils/getTranslationFilter";
 import { HIGHLIGHTS } from "@/data/highlights";
 
-const posts = await getCollection("blog");
-const sortedPosts = getSortedPosts(posts);
+const allPosts = await getCollection("blog");
+const filteredPosts = filterListingPosts(allPosts);
+const sortedPosts = getSortedPosts(filteredPosts);
 const recentPosts = sortedPosts.slice(0, SITE.postPerIndex);
 
-// Stats — auto-calculated
-const totalPosts = posts.length;
-const totalProjects = posts.filter(p => p.data.tags.includes("portfolio")).length;
-const totalVolunteer = posts.filter(p => p.data.tags.includes("volunteer")).length;
+// Stats — auto-calculated (hanya menghitung artikel unik yang terpublikasi)
+const totalPosts = filteredPosts.filter(p => !p.data.draft).length;
+const totalProjects = filteredPosts.filter(p => p.data.tags.includes("portfolio") && !p.data.draft).length;
+const totalVolunteer = filteredPosts.filter(p => p.data.tags.includes("volunteer") && !p.data.draft).length;
 ---
 
 <Layout>
