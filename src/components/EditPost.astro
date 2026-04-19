@@ -11,7 +11,20 @@ export interface Props {
 
 const { hideEditPost, post, class: className = "" } = Astro.props;
 
-const href = `${SITE.editPost.url}${post.filePath}`;
+let path = post.filePath || "";
+// Clean up path to be relative to the GitHub repo root
+if (path.includes("src/content/")) {
+  path = path.substring(path.indexOf("src/content/"));
+} else if (path.includes("src\\content\\")) {
+  path = path.substring(path.indexOf("src\\content\\")).replace(/\\/g, "/");
+} else {
+  // If filePath doesn't contain src/content (e.g. only contains the filename), fallback to using post.id
+  path = `src/content/blog/${post.id}${post.id.match(/\.mdx?$/) ? '' : '.md'}`;
+}
+
+// Ensure the base URL is just the repo base
+const repoBase = SITE.editPost.url.replace(/\/src\/content\/blog\/?$/, "");
+const href = `${repoBase}/${path}`.replace(/([^:]\/)\/+/g, "$1"); // remove double slashes except after http://
 const showEditPost = SITE.editPost.enabled && !hideEditPost && href.trim() !== "";
 ---
 
