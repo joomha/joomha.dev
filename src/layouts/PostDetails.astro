@@ -545,3 +545,55 @@ const wordCount = (post.body ?? "").split(/\s+/).length;
     border: 0;
   }
 </style>
+
+<script type="module">
+  async function renderMermaid() {
+    // Find all mermaid code blocks
+    const mermaidBlocks = document.querySelectorAll("pre > code.language-mermaid");
+    if (mermaidBlocks.length === 0) return;
+
+    // Load mermaid asynchronously only if needed
+    const { default: mermaid } = await import(
+      "https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs"
+    );
+
+    // Get current theme
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    mermaid.initialize({ 
+      startOnLoad: false, 
+      theme: isDark ? "dark" : "default",
+      fontFamily: "inherit"
+    });
+
+    for (const block of mermaidBlocks) {
+      const parent = block.parentElement; // The <pre> wrapper
+      if (!parent) continue;
+      
+      const mermaidNode = document.createElement("div");
+      mermaidNode.className = "mermaid flex justify-center my-8";
+      // Mermaid needs the raw text content to render
+      mermaidNode.textContent = block.textContent;
+      
+      // Replace the <pre> tag with the mermaid div
+      parent.replaceWith(mermaidNode);
+    }
+    
+    // Trigger render
+    try {
+      await mermaid.run({
+        querySelector: '.mermaid'
+      });
+    } catch (e) {
+      console.error("Mermaid rendering failed:", e);
+    }
+  }
+
+  // Run on initial load
+  renderMermaid();
+  
+  // Run again after Astro view transitions
+  document.addEventListener("astro:page-load", renderMermaid);
+
+  // Optional: Listen for theme toggles to re-render diagrams 
+  // (requires page reload implicitly in standard AstroPaper, but good to have)
+</script>
