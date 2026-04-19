@@ -3,6 +3,7 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import PostDetails from "@/layouts/PostDetails.astro";
 import { getPath } from "@/utils/getPath";
 import getSortedPosts from "@/utils/getSortedPosts";
+import { findTranslation } from "@/utils/getTranslationFilter";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -29,6 +30,17 @@ const { post } = Astro.props;
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
+
+const translationPost = findTranslation(post, posts);
+let translationSlugUrl: string | undefined;
+if (translationPost) {
+  translationSlugUrl = getPath(translationPost.id, translationPost.filePath, false);
+}
 ---
 
-<PostDetails post={post} posts={sortedPosts} />
+<PostDetails 
+  post={post} 
+  posts={sortedPosts} 
+  translationSlug={translationSlugUrl}
+  translationLang={translationPost?.data.lang}
+/>
