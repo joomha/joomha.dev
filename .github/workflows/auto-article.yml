@@ -2,8 +2,8 @@ name: Auto Article Agent
 
 on:
   schedule:
-    # Every Monday at 3 AM UTC (10 AM WIB)
-    - cron: "0 3 * * 1"
+    # Every 3 days at 3 AM UTC (10 AM WIB)
+    - cron: "0 3 */3 * *"
   workflow_dispatch:
 
 permissions:
