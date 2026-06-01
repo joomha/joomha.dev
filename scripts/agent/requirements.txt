@@ -1,0 +1,8 @@
+openai
+feedparser
+requests
+python-frontmatter
+python-dotenv
+pyyaml
+python-slugify
+Pillow

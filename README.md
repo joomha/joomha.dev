@@ -59,7 +59,7 @@ Saat ini, portofolio diarahkan untuk menggunakan format blog post atau bisa dita
 
 ---
 
-## menjalankan Secara Lokal
+## Menjalankan Secara Lokal
 
 Jika kamu ingin mengedit dan melihat hasilnya langsung:
 1. Buka terminal di folder ini.
@@ -68,3 +68,74 @@ Jika kamu ingin mengedit dan melihat hasilnya langsung:
 4. Buka `http://localhost:4321`.
 
 ---
+
+## 🤖 Auto Article Agent
+
+Repo ini dilengkapi sistem **Auto Article Agent v2** — pipeline otomatis yang menghasilkan dan mempublikasikan artikel blog setiap minggu tanpa intervensi manual.
+
+### Cara Kerja
+
+```
+RSS Research → Topic Ranking → Duplicate Check → AI Generate Article
+→ Validate MDX → Quality Score → Generate Thumbnail → Publish → Deploy
+```
+
+| Komponen | Teknologi |
+|----------|-----------|
+| Automation | GitHub Actions (cron setiap Senin 10:00 WIB) |
+| AI Engine | OpenRouter API (Gemini Flash → Llama 4 → GPT-OSS fallback) |
+| Scripting | Python 3.11 |
+| Thumbnail | Pillow (dark theme, 1200×630) |
+| Validation | YAML frontmatter + MDX body check |
+| Deploy | Otomatis via Vercel (trigger on push) |
+
+### Struktur File Agent
+
+```
+scripts/agent/
+├── main.py              # Pipeline orchestrator
+├── researcher.py        # RSS feed scraper (6 sumber)
+├── topic_ranker.py      # Scoring & ranking topik
+├── duplicate_checker.py # Cek duplikasi via history
+├── generator.py         # LLM article generator
+├── validator.py         # MDX & frontmatter validator
+├── quality_scorer.py    # Quality scoring (threshold: 7/10)
+├── image_generator.py   # Thumbnail generator
+├── publisher.py         # File saver & history updater
+├── utils.py             # Logging & helpers
+└── requirements.txt     # Python dependencies
+
+data/
+└── article_history.json # Riwayat artikel (anti-duplikat)
+```
+
+### Setup
+
+Tambahkan 2 secret di **GitHub → Settings → Secrets → Actions**:
+
+| Secret | Keterangan |
+|--------|------------|
+| `OPENROUTER_API_KEY` | API key dari [openrouter.ai](https://openrouter.ai) |
+| `GH_TOKEN` | GitHub Personal Access Token (scope: `repo`) |
+
+### Menjalankan Manual
+
+1. Buka tab **Actions** di GitHub
+2. Pilih workflow **"Auto Article Agent"**
+3. Klik **"Run workflow"**
+
+### Menjalankan Lokal
+
+```bash
+# Buat file .env di root project
+echo "OPENROUTER_API_KEY=sk-or-v1-xxx" > .env
+
+# Install dependencies
+pip install -r scripts/agent/requirements.txt
+
+# Jalankan pipeline
+python scripts/agent/main.py
+```
+
+---
+
