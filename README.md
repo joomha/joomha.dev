@@ -71,7 +71,7 @@ Jika kamu ingin mengedit dan melihat hasilnya langsung:
 
 ## Auto Article Agent
 
-Repo ini dilengkapi sistem **Auto Article Agent v2** — pipeline otomatis yang menghasilkan dan mempublikasikan artikel blog setiap minggu tanpa intervensi manual.
+Repo ini dilengkapi sistem **Auto Article Agent v2** — pipeline otomatis yang menghasilkan dan mempublikasikan artikel blog secara rutin (setiap 3 hari) tanpa intervensi manual.
 
 ### Cara Kerja
 
@@ -82,8 +82,8 @@ RSS Research → Topic Ranking → Duplicate Check → AI Generate Article
 
 | Komponen | Teknologi |
 |----------|-----------|
-| Automation | GitHub Actions (cron setiap Senin 10:00 WIB) |
-| AI Engine | OpenRouter API (Gemini Flash → Llama 4 → GPT-OSS fallback) |
+| Automation | GitHub Actions (cron setiap 3 hari pukul 10:00 WIB) |
+| AI Engine | OpenRouter API (GPT-OSS 120b → Llama 4 → Gemini Flash) |
 | Scripting | Python 3.11 |
 | Thumbnail | Pillow (dark theme, 1200×630) |
 | Validation | YAML frontmatter + MDX body check |
