@@ -12,9 +12,9 @@ from utils import log, log_error, iso_now
 
 # ─── Model Fallback Chain ────────────────────────────────────
 MODELS = [
-    "google/gemini-2.5-flash",
-    "meta-llama/llama-4-maverick",
     "openai/gpt-oss-120b",
+    "meta-llama/llama-4-maverick",
+    "google/gemini-2.5-flash",
 ]
 
 MAX_RETRIES = 3
