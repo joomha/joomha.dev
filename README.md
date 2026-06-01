@@ -69,7 +69,7 @@ Jika kamu ingin mengedit dan melihat hasilnya langsung:
 
 ---
 
-## 🤖 Auto Article Agent
+## Auto Article Agent
 
 Repo ini dilengkapi sistem **Auto Article Agent v2** — pipeline otomatis yang menghasilkan dan mempublikasikan artikel blog setiap minggu tanpa intervensi manual.
 
