@@ -41,9 +41,9 @@ def get_blog_dir(year: int | None = None) -> Path:
 
 
 def get_image_dir() -> Path:
-    """Return the blog images directory under public/."""
+    """Return the blog images directory under src/assets/images/blog."""
     root = get_project_root()
-    img_dir = root / "public" / "blog-images"
+    img_dir = root / "src" / "assets" / "images" / "blog"
     img_dir.mkdir(parents=True, exist_ok=True)
     return img_dir
 

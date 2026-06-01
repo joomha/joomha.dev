@@ -136,7 +136,7 @@ tags:
 {tag_lines}
 draft: false
 featured: false
-ogImage: "/blog-images/{slug}.png"
+ogImage: "../../../assets/images/blog/{slug}.png"
 lang: "id"
 ---"""
 
