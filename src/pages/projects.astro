@@ -9,7 +9,7 @@ import getUniqueTags from "@/utils/getUniqueTags";
 import { SITE } from "@/config";
 
 const posts = await getCollection("blog");
-const portofolioPosts = posts.filter(post => post.data.tags.includes("portofolio"));
+const portofolioPosts = posts.filter(post => post.data.tags.includes("Portofolio"));
 ---
 
 <Layout title={`Projects | ${SITE.title}`}>
@@ -22,7 +22,7 @@ const portofolioPosts = posts.filter(post => post.data.tags.includes("portofolio
       {portofolioPosts.length === 0 ? (
         <div class="bg-muted/20 border border-border rounded-2xl p-8 text-center my-12">
           <p class="text-lg opacity-60">Working on something exciting. Check back soon!</p>
-          <p class="text-sm opacity-40 mt-2">To add a project, simply create a blog post with the tag <code class="bg-muted px-1 rounded">portofolio</code>.</p>
+          <p class="text-sm opacity-40 mt-2">To add a project, simply create a blog post with the tag <code class="bg-muted px-1 rounded">Portofolio</code>.</p>
         </div>
       ) : (
         <ul class="grid grid-cols-1 md:grid-cols-2 gap-6 not-prose list-none p-0">
