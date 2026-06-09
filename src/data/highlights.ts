@@ -29,4 +29,11 @@ export const HIGHLIGHTS: Highlight[] = [
     actionUrl: "https://github.com/joomha",
     actionLabel: "GitHub",
   },
+  {
+    title: "BSC Website",
+    image: "/highlights/bsc-website.png",
+    postUrl: "/posts/2026/hello-world",
+    actionUrl: "https://github.com/joomha",
+    actionLabel: "GitHub",
+  },
 ];
