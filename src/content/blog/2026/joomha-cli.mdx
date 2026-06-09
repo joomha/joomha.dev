@@ -1,0 +1,77 @@
+---
+title: "Membedah Kode Asing Lebih Cepat dengan Joomha CLI"
+pubDatetime: 2026-06-09T18:00:00+07:00
+lang: "id"
+translationGroupId: "joomha-cli-intro"
+description: "Joomha-CLI adalah tool AI berbasis terminal yang memungkinkan kamu memahami repositori kode yang belum pernah kamu lihat sebelumnya hanya dengan bertanya dalam bahasa natural."
+featured: true
+draft: false
+ogImage: "/blog-images/joomha-cli-thumb.png"
+tags:
+  - CLI
+  - AI
+  - RAG
+  - Python
+  - Developer-Tools
+---
+
+Pernahkah kamu dihadapkan pada sebuah repositori kode (codebase) peninggalan developer sebelumnya, dengan ratusan file, tanpa dokumentasi, dan atasanmu meminta fitur baru ditambahkan esok harinya? 
+
+Itulah masalah utama yang ingin diselesaikan oleh **Joomha-CLI**.
+
+Joomha-CLI adalah tool **AI berbasis terminal (CLI)** yang dirancang untuk membantu developer memahami codebase asing hanya dengan bertanya menggunakan bahasa natural. Alih-alih menghabiskan waktu berjam-jam melakukan pencarian `grep` atau melacak pemanggilan fungsi secara manual, kamu cukup masuk ke direktori proyek dan bertanya: *"Bagaimana alur kerja sistem autentikasi di proyek ini?"*
+
+## Arsitektur: Penggabungan Vector dan Graph RAG
+
+Kebanyakan tools AI koding saat ini mengandalkan arsitektur *Vector Retrieval-Augmented Generation (RAG)* standar. Mereka memecah file teks, mengubahnya menjadi deretan angka (embeddings), dan mencari kemiripan berdasarkan teks prompt. Ini sangat bagus untuk pertanyaan semantik, tapi sering kali gagal menangkap struktur relasional dari sebuah kode (contoh: *fungsi A memanggil fungsi B yang mewarisi class C*).
+
+Joomha-CLI memecahkan kelemahan ini dengan memperkenalkan **arsitektur RAG ganda**:
+
+1. **Vector Retrieval** — Pencarian kemiripan kosinus (cosine similarity) menggunakan embeddings lokal ringan `all-MiniLM-L6-v2` melalui database vector **LanceDB**.
+2. **Graph Retrieval** — Penelusuran (traversal) relasional yang memanfaatkan Abstract Syntax Tree (AST) dan analisis *Git co-change* (file-file mana saja yang sering di-commit secara bersamaan). Data graph ini disimpan dalam **SQLite**.
+
+### Parsing Beragam Bahasa secara Cerdas
+
+Agar mesin grafis (Graph Retrieval) ini berfungsi, Joomha-CLI tidak membaca kode sebagai baris teks biasa, melainkan mem-parsing strukturnya.
+
+Menggunakan kombinasi standard library `ast` (untuk Python) dan **Tree-sitter** (untuk JavaScript dan TypeScript), Joomha-CLI dapat mengekstrak fungsi, class, dependensi, dan relasi antar file secara otomatis ketika pertama kali dijalankan di dalam sebuah direktori Git.
+
+## Fitur Unggulan
+
+- **Multi-Model Support:** Terintegrasi dengan model-model LLM terbaik seperti Google Gemini (`gemini-flash-latest` secara default, yang mana gratis dan sangat cepat), OpenAI GPT, dan Anthropic Claude.
+- **Compare Mode:** Ini adalah fitur pamungkas bagi *AI Engineer* atau *AI Researcher*. Kamu dapat menjalankan mode Vector dan Graph secara bersamaan (`/mode compare`) untuk melihat retriever mana yang menyajikan konteks lebih baik kepada LLM untuk codebase spesifikmu.
+- **Auto Fallback:** Jika pengguna menggunakan mode Graph namun mesin tidak menemukan node/relasi AST yang cocok dengan pertanyaan, CLI akan otomatis berpindah *(fallback)* sementara ke mode Vector.
+- **Terminal UI (TUI) Kaya Warna:** Menggunakan library `rich` dan `prompt-toolkit`, interaksinya tidak terasa membosankan. Terdapat spinner, panel berwarna, tabel riwayat komit (*hotspots*), dan format syntax markdown langsung di terminal.
+- **Built-in Evaluator:** Menulis jurnal riset? Joomha-CLI sudah dilengkapi script evaluasi (`evaluate.py`) untuk membandingkan metrik **Hit Rate**, **Mean Reciprocal Rank (MRR)**, dan **Latency** dari strategi retrieval yang kamu gunakan pada dataset pengujian.
+
+## Cara Menggunakannya
+
+Kamu bisa langsung mencoba menginstalnya melalui repositori sumber:
+
+```bash
+git clone https://github.com/joomha/joomha-CLI.git
+cd joomha-CLI
+pip install -e .
+```
+
+Atau jika ingin menginstalnya via PyPI:
+
+```bash
+pip install joomha-CLI
+```
+
+Lalu, daftarkan API key kamu (misalnya menggunakan API Key Gemini secara gratis):
+
+```bash
+export GEMINI_API_KEY=your-key-here
+```
+
+Setelah itu, masuk ke folder repositori proyek manapun yang ingin kamu bedah, lalu jalankan:
+
+```bash
+joomha
+```
+
+Saat pertama dijalankan, ia akan menganalisis semua kode dan riwayat Git secara lokal sebelum masuk ke sesi tanya jawab. Cobalah bereksperimen dengan command `/mode compare` untuk melihat langsung perbedaan antara Vector dan Graph retrieval!
+
+**Tertarik berkontribusi atau sekadar melihat kodenya?** Kunjungi repositori GitHub resminya di [github.com/joomha/joomha-CLI](https://github.com/joomha/joomha-CLI).

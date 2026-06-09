@@ -24,8 +24,8 @@ export interface Highlight {
 export const HIGHLIGHTS: Highlight[] = [
   {
     title: "Joomha CLI",
-    image: "/highlights/dummy.png",
-    postUrl: "/posts/2026/hello-world",
+    image: "/highlights/joomha-cli.png",
+    postUrl: "/posts/2026/joomha-cli",
     actionUrl: "https://github.com/joomha/joomha-cli",
     actionLabel: "GitHub",
   },
