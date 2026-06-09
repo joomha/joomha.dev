@@ -17,7 +17,7 @@ const recentPosts = sortedPosts.slice(0, SITE.postPerIndex);
 
 // Stats — auto-calculated (hanya menghitung artikel unik yang terpublikasi)
 const totalPosts = filteredPosts.filter(p => !p.data.draft).length;
-const totalProjects = filteredPosts.filter(p => p.data.tags.includes("portfolio") && !p.data.draft).length;
+const totalProjects = filteredPosts.filter(p => p.data.tags.includes("Portofolio") && !p.data.draft).length;
 const totalVolunteer = filteredPosts.filter(p => p.data.tags.includes("volunteer") && !p.data.draft).length;
 ---
 
