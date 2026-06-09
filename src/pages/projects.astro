@@ -9,7 +9,7 @@ import getUniqueTags from "@/utils/getUniqueTags";
 import { SITE } from "@/config";
 
 const posts = await getCollection("blog");
-const portfolioPosts = posts.filter(post => post.data.tags.includes("portfolio"));
+const portofolioPosts = posts.filter(post => post.data.tags.includes("portofolio"));
 ---
 
 <Layout title={`Projects | ${SITE.title}`}>
@@ -19,14 +19,14 @@ const portfolioPosts = posts.filter(post => post.data.tags.includes("portfolio")
       <h1 class="text-3xl font-bold mb-4">Projects</h1>
       <p class="text-lg opacity-70 mb-8">A collection of my works in Web, AI, and SEO.</p>
       
-      {portfolioPosts.length === 0 ? (
+      {portofolioPosts.length === 0 ? (
         <div class="bg-muted/20 border border-border rounded-2xl p-8 text-center my-12">
           <p class="text-lg opacity-60">Working on something exciting. Check back soon!</p>
-          <p class="text-sm opacity-40 mt-2">To add a project, simply create a blog post with the tag <code class="bg-muted px-1 rounded">portfolio</code>.</p>
+          <p class="text-sm opacity-40 mt-2">To add a project, simply create a blog post with the tag <code class="bg-muted px-1 rounded">portofolio</code>.</p>
         </div>
       ) : (
         <ul class="grid grid-cols-1 md:grid-cols-2 gap-6 not-prose list-none p-0">
-          {portfolioPosts.map(post => (
+          {portofolioPosts.map(post => (
             <li class="border border-border rounded-2xl p-6 hover:border-accent/50 transition-all group">
               <a href={`/posts/${post.slug}`} class="block">
                 <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{post.data.title}</h3>
